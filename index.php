@@ -1,5 +1,3 @@
 <?php
 
-echo "custom seo apis";
-
-?>
+echo "testing";

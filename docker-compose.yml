@@ -1,0 +1,32 @@
+version: "3.3"
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    volumes:
+      - ./php-app:/var/www/html
+    depends_on:
+      - db
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8001:80"
+    environment:
+      - PMA_ARBITRARY=1
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: seoapi
+      MYSQL_USER: seoapi
+      MYSQL_PASSWORD: seo123
+    volumes:
+      - ./mysql-data:/var/lib/mysql
